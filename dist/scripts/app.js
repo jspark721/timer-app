@@ -9,11 +9,12 @@
         $stateProvider
             .state('home', {
                 url:'/',
+                controller:'TimerCtrl',
                 templateUrl: '/templates/home.html'
             })
     }
     
     angular
-        .module('myApp', ['ui.router'])
+        .module('timerApp', ['ui.router'])
         .config(config);
 })();
