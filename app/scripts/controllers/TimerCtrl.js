@@ -1,11 +1,9 @@
 (function(){
-    function TimerCtrl($scope, $interval, MY_TIMERS){
+    function TimerCtrl($scope, $interval, MY_TIMERS, TIMER_STATES){
         $scope.startTime = MY_TIMERS.WORK_SESSION;
         $scope.format= 'mm:ss'; //minutes and seconds
         $scope.buttonName = "START WORK SESSION";
-        $scope.workSession = true;
-        $scope.onBreak = false;
-        $scope.onLongBreak = false;
+        $scope.timerState = TIMER_STATES.WORK; // other options are 'BREAK' or 'LONG_BREAK'
         $scope.breakTime = MY_TIMERS.BREAK_TIME;
         $scope.longBreakTime = MY_TIMERS.LONG_BREAK_TIME;
         $scope.completedWorkSessions= 0;
@@ -17,7 +15,7 @@
             
             if($scope.startTime == 0) {
                 $scope.stop();
-                if($scope.onBreak || $scope.onLongBreak) {
+                if($scope.onBreak()) {
                     $scope.setWorkSession();
                 } else {
                     $scope.completedWorkSessions++;
@@ -35,11 +33,13 @@
         $scope.updateTimer = function(){
             if($scope.buttonName === "RESET") {
                 $scope.stop();
-                if($scope.onBreak) {
+                if($scope.timerState === "onBreak") {
                     $scope.setBreakTime();
-                } if($scope.onLongBreak) {
+                } 
+                if($scope.timerState === "onLongBreak") {
                     $scope.setLongBreak();
-                } if($scope.workSession) {
+                } 
+                if($scope.timerState === "workSession") {
                     $scope.setWorkSession();
                 } 
             } else {
@@ -57,27 +57,29 @@
         }
         
         $scope.setWorkSession = function() {
-            $scope.workSession = true;
-            $scope.onBreak = false;
-            $scope.onlongBreak = false;
+            $scope.timerState = TIMER_STATES.WORK;
             $scope.startTime = MY_TIMERS.WORK_SESSION;
             $scope.buttonName = "START WORK SESSION";
         }
         
         $scope.setBreakTime = function() {
-            $scope.onBreak = true;
-            $scope.onlongBreak = false;
-            $scope.workSession = false;
+            $scope.timerState = TIMER_STATES.BREAK;
             $scope.startTime = MY_TIMERS.BREAK_TIME;
             $scope.buttonName = "5 MIN BREAK";
         }
         
         $scope.setLongBreak = function() {
-            $scope.onlongBreak = true;
-            $scope.onBreak= false;
-            $scope.workSession = false;
+            $scope.timerState = TIMER_STATES.LONG_BREAK;
             $scope.startTime = MY_TIMERS.LONG_BREAK_TIME;
             $scope.buttonName = "30 MIN BREAK";
+        }
+        
+        $scope.onBreak = function() {
+            if ($scope.timerState === "workSession") {
+                return false;
+            } else {
+                return true;
+            }
         }
     };
     
@@ -88,7 +90,12 @@
             BREAK_TIME: 3000,
             LONG_BREAK_TIME: 18000
         })
-        .controller('TimerCtrl', ['$scope','$interval', 'MY_TIMERS', TimerCtrl]);
+        .constant('TIMER_STATES', {
+            WORK: 'workSession',
+            BREAK: 'onBreak',
+            LONG_BREAK: 'onLongBreak'
+    })
+        .controller('TimerCtrl', ['$scope','$interval', 'MY_TIMERS', 'TIMER_STATES', TimerCtrl]);
 })();
 
 

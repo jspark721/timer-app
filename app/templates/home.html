@@ -4,8 +4,8 @@
             <h3 class="the">the</h3><h1 class="title">Pomodoro<br/>Timer</h1>
             <div ng-controller="TimerCtrl">
                 <h1 class="timer">{{ startTime | date:format }}</h1>
-                <button ng-click="updateTimer()" ng-hide="onBreak" class="btn btn-success">{{ buttonName }}</button>
-                <button ng-click="updateTimer()" ng-show="onBreak" class="btn btn-success">{{ buttonName }}</button>
+                <button ng-click="updateTimer()" ng-hide="onBreak()" class="btn btn-success">{{ buttonName }}</button>
+                <button ng-click="updateTimer()" ng-show="onBreak()" class="btn btn-success">{{ buttonName }}</button>
             </div>
         </div>
     </div>
