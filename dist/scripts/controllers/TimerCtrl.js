@@ -1,48 +1,66 @@
 (function(){
-    function TimerCtrl($scope, $interval){
-        $scope.startTime = 1500000;
+    function TimerCtrl($scope, $interval, MY_TIMERS){
+        $scope.startTime = MY_TIMERS.WORK_SESSION;
         $scope.format= 'mm:ss'; //minutes and seconds
+        $scope.workSession = true;
         $scope.onBreak = false;
-        $scope.workTime = true;
-        $scope.breakTime = 300000;
+        $scope.onLongBreak = false;
+        $scope.breakTime = MY_TIMERS.BREAK_TIME;
+        $scope.longBreak = MY_TIMERS.LONG_BREAK_TIME;
+        $scope.completedWorkSessions= 0;
         
         var timer;
+        var breakTimer;
+        
         $scope.startTimer= function(){
             timer = $interval(function(){
                 $scope.startTime -=1000;
-                $scope.workTime= false;
+                $scope.workSession= false;
                 
                 // when timer hits 0:00, timer stops and break timer starts
                 if($scope.startTime == 0) {
-                    $interval.cancel(timer);
+                    $scope.stop();
                     $scope.onBreak = true;
                     
-                    $scope.breakTimer = function() {
-                        $interval(function(){
-                            $scope.breakTime -=1000;
+                    if($scope.onBreak || $scope.onLongBreak) {
+                        $scope.setBreakTime();
                             
-                            if($scope.breakTime == 0) {
-                                $scope.onBreak = false;
-                            }
-                        },1000);
+                        if($scope.breakTime == 0) {
+                            $scope.onBreak = false;
+                        }
                     }
                 }
             }, 1000);
-            
-            $scope.stop = function(){
-                $interval.cancel(timer);
-            }
         };
         
         $scope.resetTimer = function(){
             $scope.startTime= 1500000;
         }
         
+        $scope.stop = function() {
+            $interval.cancel($scope.timer);
+        }
+        
+        $scope.setBreakTime = function(){
+             breakTimer = $interval(function() {
+                 $scope.breakTime -=1000;
+                 
+                 if($scope.breakTime == 0){
+                     $interval.cancel(breakTimer);
+                 }
+             }, 1000);
+        }
+        
     };
     
     angular
         .module('timerApp')
-        .controller('TimerCtrl', TimerCtrl);
+        .constant('MY_TIMERS', {
+            WORK_SESSION: 15000,
+            BREAK_TIME: 3000,
+            LONG_BREAK_TIME: 18000
+        })
+        .controller('TimerCtrl', ['$scope','$interval', 'MY_TIMERS', TimerCtrl]);
 })();
 
 
