@@ -7,14 +7,20 @@
         $scope.breakTime = MY_TIMERS.BREAK_TIME;
         $scope.longBreakTime = MY_TIMERS.LONG_BREAK_TIME;
         $scope.completedWorkSessions= 0;
-
+        
+        // Sound file
+        var timerSound = new buzz.sound( "/assets/sounds/Long.mp3", {
+            preload: true
+        });
         
         $scope.startTimer= function(){
             $scope.startTime -=1000;
             $scope.buttonName = "RESET";
             
             if($scope.startTime == 0) {
+                timerSound.play();
                 $scope.stop();
+                
                 if($scope.onBreak()) {
                     $scope.setWorkSession();
                 } else {
