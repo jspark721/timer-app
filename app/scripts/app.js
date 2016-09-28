@@ -15,6 +15,6 @@
     }
     
     angular
-        .module('timerApp', ['ui.router'])
+        .module('timerApp', ['ui.router', 'firebase'])
         .config(config);
 })();

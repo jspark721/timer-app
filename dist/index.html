@@ -13,6 +13,20 @@
     
     <ui-view></ui-view>
     
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyC8f3Wf2tVs3jrGRd9QVAt7rMEFtdM3VZA",
+            authDomain: "timer-app-43a23.firebaseapp.com",
+            databaseURL: "https://timer-app-43a23.firebaseio.com",
+            storageBucket: "timer-app-43a23.appspot.com",
+            messagingSenderId: "1050801059903"
+        };
+        firebase.initializeApp(config);
+    </script>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
