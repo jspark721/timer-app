@@ -4,7 +4,9 @@
 
 /* center the timer */
 .center{
-    margin-top: 30%;
+    text-align: center;
+    margin-top: -575px;
+    margin-left: 100px;
 }
 
 .title{
@@ -15,4 +17,10 @@
 
 .the{
     color: #5cb85c;
+}
+
+.sidebar {
+    background-color: lightgrey;
+    padding: 10px;
+    height: 800px;
 }

@@ -1,6 +1,14 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-8 text-center center">
+        <div class="col-md-3 sidebar">
+            <h3>Task History</h3>
+            <div class="form-group" ng-model="task">
+                <input type="text" class="form-control" placeholder="Enter task here...">
+            </div>
+            <button class="btn btn-sm btn-default pull-right" ng-click="addTask()">Add Task</button>
+        </div>
+    
+        <div class="col-md-12 center">
             <h3 class="the">the</h3><h1 class="title">Pomodoro<br/>Timer</h1>
             <div ng-controller="TimerCtrl">
                 <h1 class="timer">{{ startTime | date:format }}</h1>
