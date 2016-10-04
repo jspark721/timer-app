@@ -19,10 +19,15 @@
         .controller('TaskCtrl', function($scope, $firebaseArray){
             var ref = firebase.database().ref(); 
         
-            $scope.names=$firebaseArray(ref);
+            $scope.tasks=$firebaseArray(ref);
         
             $scope.add = function() {
-                $scope.names.$add($scope.task);
+                $scope.tasks.$add({
+                    task: $scope.task ,
+                    created_at: true
+                });
+            $scope.task="";
+                
             }
         })
         .config(config);
