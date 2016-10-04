@@ -2,19 +2,24 @@
     <div class="row">
         <div class="col-md-3 sidebar">
             <h3 class="heading">Task History</h3>
+            <!-- Add task -->
             <div ng-controller="TaskCtrl">
                 <input type="text" ng-model="task.name" class="form-control" placeholder="Enter task here...">
                 <button ng-click="add()" class="btn btn-sm btn-success pull-right">Add Task</button>
                 
                 <table class="table table-hover">
                     <tr ng-repeat="task in tasks | orderBy: 'created_at':true">
-                        <td>{{task.task.name}}</td>
+                        <td>
+                            {{task.task.name}}
+                            <!-- Remove task -->
+                            <a class="btn" role="button" ng-click="tasks.$remove(task)">&#9989;</a>
+                        </td>
                     </tr>
                 </table>
             </div>
         </div>
     
-        <div class="col-md-12 center">
+        <div class="col-md-8 center">
             <h3 class="the">the</h3><h1 class="title">Pomodoro<br/>Timer</h1>
             <div ng-controller="TimerCtrl">
                 <h1 class="timer">{{ startTime | date:format }}</h1>
