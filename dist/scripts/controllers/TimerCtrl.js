@@ -1,5 +1,5 @@
 (function(){
-    function TimerCtrl($scope, $interval, $firebaseArray, Tasks, MY_TIMERS, TIMER_STATES){
+    function TimerCtrl($scope, $interval, MY_TIMERS, TIMER_STATES){
         $scope.startTime = MY_TIMERS.WORK_SESSION;
         $scope.format= 'mm:ss'; //minutes and seconds
         $scope.buttonName = 'START WORK SESSION';
@@ -7,16 +7,6 @@
         $scope.breakTime = MY_TIMERS.BREAK_TIME;
         $scope.longBreakTime = MY_TIMERS.LONG_BREAK_TIME;
         $scope.completedWorkSessions= 0;
-        
-        // Add Tasks
-        $scope.tasks = Tasks.all;
-        
-        $scope.addTask = function() {
-            $scope.tasks.$add( {
-                name: $scope.task
-            });
-            $scope.task = '';
-        };
         
         // Sound file
         var timerSound = new buzz.sound( '/assets/sounds/Long.mp3', {
@@ -111,7 +101,7 @@
             BREAK: 'onBreak',
             LONG_BREAK: 'onLongBreak'
     })
-        .controller('TimerCtrl', ['$scope','$interval', '$firebaseArray', 'Tasks', 'MY_TIMERS', 'TIMER_STATES', TimerCtrl]);
+        .controller('TimerCtrl', ['$scope','$interval', 'MY_TIMERS', 'TIMER_STATES', TimerCtrl]);
 })();
 
 

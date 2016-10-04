@@ -16,5 +16,14 @@
     
     angular
         .module('timerApp', ['ui.router','firebase'])
+        .controller('TaskCtrl', function($scope, $firebaseArray){
+            var ref = firebase.database().ref(); 
+        
+            $scope.names=$firebaseArray(ref);
+        
+            $scope.add = function() {
+                $scope.names.$add($scope.task);
+            }
+        })
         .config(config);
 })();

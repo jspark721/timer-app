@@ -2,10 +2,15 @@
     <div class="row">
         <div class="col-md-3 sidebar">
             <h3>Task History</h3>
-            <div class="form-group" ng-model="task">
-                <input type="text" class="form-control" placeholder="Enter task here...">
+            <div ng-controller="TaskCtrl">
+            
+            <input type="text" ng-model="task.name">
+            <button ng-click="add()">Add Task</button>
+            
+            <p ng-repeat="n in names">
+                {{n.name}}
+            </p>
             </div>
-            <button class="btn btn-sm btn-default pull-right" ng-click="addTask()">Add Task</button>
         </div>
     
         <div class="col-md-12 center">
