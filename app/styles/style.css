@@ -34,8 +34,17 @@
 .table {
     font-size: 14px;
     font-weight: 300;
+    text-transform: uppercase;
 }
 
 .btn-secondary {
     color:white;
+}
+
+.counter {
+    color: lightgray;
+    padding-top: 10px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
 }

@@ -7,6 +7,7 @@
         $scope.breakTime = MY_TIMERS.BREAK_TIME;
         $scope.longBreakTime = MY_TIMERS.LONG_BREAK_TIME;
         $scope.completedWorkSessions= 0;
+        $scope.counter = 0;
         
         // Sound file
         var timerSound = new buzz.sound( '/assets/sounds/Long.mp3', {
@@ -61,6 +62,12 @@
         $scope.stop = function() {
             $interval.cancel($scope.timerSet);
         }
+        
+        $scope.pause = function() {
+            $interval.cancel($scope.timerSet);
+            $scope.counter ++;
+            console.log($scope.counter);
+        };
         
         $scope.setWorkSession = function() {
             $scope.timerState = TIMER_STATES.WORK;
