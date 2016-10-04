@@ -26,8 +26,6 @@
                     task: $scope.task ,
                     created_at: true
                 });
-            $scope.task="";
-                
             }
         })
         .config(config);
