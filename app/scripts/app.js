@@ -23,9 +23,10 @@
         
             $scope.add = function() {
                 $scope.tasks.$add({
-                    task: $scope.task ,
+                    task: $scope.task,
                     created_at: true
                 });
+                $scope.task.name = null;
             }
         })
         .config(config);

@@ -1,16 +1,18 @@
 .timer{
     font-size: 72px;
+    padding: 20px;
+    margin: 20px;
 }
 
-/* center the timer */
+/* center the container */
 .center{
     text-align: center;
-    margin-top: -575px;
-    margin-left: 270px;
+    margin-top: -675px;
+    margin-left: 300px;
 }
 
 .title{
-    color:red;
+    color: #d9534f;
     line-height: 28px;
     margin-top: -14px;
 }
@@ -27,7 +29,6 @@
 
 .heading {
     color: #5cb85c;
-    border-bottom: 2px solid #5cb85c;
     padding: 5px 0px 5px 5px;
 }
 

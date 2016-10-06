@@ -2,7 +2,7 @@
     function TimerCtrl($scope, $interval, MY_TIMERS, TIMER_STATES){
         $scope.startTime = MY_TIMERS.WORK_SESSION;
         $scope.format= 'mm:ss'; //minutes and seconds
-        $scope.buttonName = 'START WORK SESSION';
+        $scope.buttonName = 'START TIMER';
         $scope.timerState = TIMER_STATES.WORK; // other options are 'BREAK' or 'LONG_BREAK'
         $scope.breakTime = MY_TIMERS.BREAK_TIME;
         $scope.longBreakTime = MY_TIMERS.LONG_BREAK_TIME;
@@ -72,7 +72,7 @@
         $scope.setWorkSession = function() {
             $scope.timerState = TIMER_STATES.WORK;
             $scope.startTime = MY_TIMERS.WORK_SESSION;
-            $scope.buttonName = 'START WORK SESSION';
+            $scope.buttonName = 'START TIMER';
         }
         
         $scope.setBreakTime = function() {
@@ -99,9 +99,9 @@
     angular
         .module('timerApp')
         .constant('MY_TIMERS', {
-            WORK_SESSION: 5000,
-            BREAK_TIME: 3000,
-            LONG_BREAK_TIME: 18000
+            WORK_SESSION: 1500000,
+            BREAK_TIME: 300000,
+            LONG_BREAK_TIME: 180000
         })
         .constant('TIMER_STATES', {
             WORK: 'workSession',

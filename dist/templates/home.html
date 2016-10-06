@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3 sidebar">
-            <h3 class="heading">Task History</h3>
+            <h3 class="heading">TASK HISTORY</h3>
             <!-- Add task -->
             <div ng-controller="TaskCtrl">
                 <input type="submit" ng-click="add()" class="btn btn-success" value="Add Task" style="float: right;">
@@ -23,8 +23,14 @@
     
         <div class="col-md-8 center">
             <h3 class="the">the</h3><h1 class="title">Pomodoro<br/>Timer</h1>
+            <div class="tomato">
+                <img ng-src="/assets/images/tomato.png" />
+            </div>
+            
             <div ng-controller="TimerCtrl">
+            
                 <h1 class="timer">{{ startTime | date:format }}</h1>
+                   
                 <button ng-click="updateTimer()" ng-hide="onBreak()" class="btn btn-success">{{ buttonName }}</button>
                 <button ng-click="updateTimer()" ng-show="onBreak()" class="btn btn-success">{{ buttonName }}</button>
                 
