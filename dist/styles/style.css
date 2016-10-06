@@ -1,7 +1,8 @@
 .timer{
-    font-size: 72px;
+    font-size: 102px;
     padding: 20px;
     margin: 20px;
+    font-weight:700;
 }
 
 /* center the container */
@@ -38,6 +39,10 @@
     text-transform: uppercase;
 }
 
+.btn-secondary:hover {
+    color:white !important;
+    background-color: #aaaaaa;
+}
 .btn-secondary {
     color:white;
 }
